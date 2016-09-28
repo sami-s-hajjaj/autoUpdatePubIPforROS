@@ -1,0 +1,42 @@
+###################################################################################################################################
+# AutoUpdate Public IP address for a Remote ROS network - Any other member of the remote ROS network
+###################################################################################################################################
+# 
+# This script captures the current public IP address of a robot that uses a portable modem, with a dynamically changing IP address
+#
+# This script should be installed on any other component attempts to remotely connect with the robot, such as a computer or desktop
+# 
+# Installation instructions: 
+# After making changes to reflect yoursetup (read comments), copy and paste into the bash file in the computer or desktop. 
+#
+# Note: there are many echo lines commented out, you can uncomment these when troubleshooting
+#
+####################################################################################################################################
+
+# Note: change the value of USERNAME below to the value of your username 
+
+turtlebotIP=$(cat /home/USERNAME/Dropbox/turtlebotIP.txt)			   # Capture current public IP addres of robot
+turtlebotIPOld=$(cat /home/USERNAME/Dropbox/turtlebotIPOld.txt)		 	   # Capture previous public IP addres of robot
+
+# Note: the current public IP address of the robot is updated by the masterScript, installed on the robot's computer. 
+# Once updated there, the laptop or computer will be notified through Dropbox, trigguring this script. 
+
+if [[ $turtlebotIPOld != $turtlebotIP ]] ; then 				   # If the values are different
+    rm /home/USERNAME/Dropbox/turtlebotIPOld.txt				   # remove old stored value from Dropbox	
+    sudo sed -i "/$turtlebotIPOld/d" "/etc/hosts"  				   # remove old host defintion from /etc/hosts
+    # Note: You will be prompted to enter your password. 
+
+    echo $turtlebotIP >> /home/USERNAME/Dropbox/turtlebotIPOld.txt; 		   # add new values to Dropbox
+    sudo -- sh -c -e "echo '$turtlebotIP\tturtlebot' >> /etc/hosts"; 		   # add new host definition to /etc/hosts
+    # Note: this will add "###.###.### ###    turtlebot" to your hosts file
+    # Note: the extra \t is needed to add a tab spacing after the ip address. 
+
+    echo "Turtlebot IP address sucessfully Updated, new IP address: $turtlebotIP"; # notify user
+
+#    else
+#      echo "Turtlebot Public IP not changed = $turtlebotIPOld";
+fi
+
+################ end of script ########################################################################################################
+
+

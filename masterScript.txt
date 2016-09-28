@@ -1,0 +1,37 @@
+##############################################################################################################
+# AutoUpdate Public IP address for a Remote ROS network - ROSmaster
+##############################################################################################################
+# 
+# Installation instructions: 
+# After making changes to reflect yoursetup (read comments), copy and paste
+# in your ROSmaster's computer, most likely the netbook of your robot
+#
+# Note: there are many echo lines commented out, you can uncomment these when troubleshooting
+#
+##############################################################################################################
+
+# To avoid running this script when offline, check connection
+if [[ -n $(wget -qO- http://ipecho.net/plain) ]] ; then 	   # retuns blank script when offline
+   #echo "we are now online"    				   
+   myPubIP=$(wget -qO- http://ipecho.net/plain)		  	   # obtain current public IP address
+   #echo "My Public IP address is: $myPubIP"			   
+
+   myPubIPOld=$(cat /home/USERNAME/Dropbox/turtlebotIP.txt) 	   # obtain old Public IP already in storage
+   # change USERNAME to your username	 			   
+	
+   #echo "Previous IP Address: $myPubIPOld" 			   
+   
+   if [[ $myPubIPOld != $myPubIP ]] ; then 			   # if current IP different than stored value	
+	#echo "New Public IP address: ";
+   	rm /home/turtlebot/Dropbox/turtlebotIP.txt		   # remove old stored public IP address
+   	echo $myPubIP >> /home/turtlebot/Dropbox/turtlebotIP.txt;  # add new Current public IP address
+ 	#echo "New Public IP = $myPubIP";			  
+    #else							  
+    	#echo "Same Public IP = $myPubIPOld";   		  
+   fi
+   
+#else 
+   #echo "we are now offline"    
+fi
+
+# end of script ################################################################################################
