@@ -5,10 +5,17 @@ This package assumes the following:
 - The computer, a desktop or laptop, that attempts to connect to the robot remotely (through the internet) via Port-Forwarding
 - You have a Cloud-based storage facility, such as Dropbox. The scripts in this package use Dropbox.
 - Because the robot's IP address is dynamically changing, the definitino of the ROS_MASTER_URI, as well as the hosts settings must be updated everytime the portable modem is restarted 
+
 - The scripts of this pacakge automate this step
-- There are only two scripts in this pacakge: 
-- The masterScript: which should be installed at the robot's netbook, and 
-- The memberScript, which should be installed at laptop or desktop, or any other member of the remote ROS network. 
-- Installation: just copy the content of each script and add to the bash file of each computer. 
-- NOTE: these scripts call on various txt files that need to be in place in a cloud storage facilities, the names of these txt files, the setting of the cloud storage facility, and the path to the cloud folder, must all be set by the user, and the scripts shown here must be updated accordingly
-- NOTE2: Similarly, these scripts define two hosts as the members of ROS network, the robot named turtlebot, and another computer named sami, you can continue to use these names if u want, or u can define your own. In which case you need to go and modify the scripts accordingly
+- There are Four scripts in this pacakge: 
+
+1) The masterScript: to be installed at the robot's netbook, and 
+2) The memberScript: to be installed at laptop or desktop, or any other member of the remote ROS network. 
+3) The ROS_networkSelector_master: an upgrade of the masterScript, it auto-detect the changes in the IP of the robot, as well as the type of network (remote or local ROS networks), and applies the ROS and Linux changes accordingly, on the ROSmaster 
+4) The ROS_networkSelector_member: an upgradae of teh memberScript,  it auto-detect the changes in the IP of the robot, as well as the type of network (remote or local ROS networks), and applies the ROS and Linux changes accordingly, on the member
+
+
+- INSTALLATION: just copy the required scripts into the bash file of each computer of the ROS network, (1 & 2 or 3 & 4, depending on the needed functionality), paying attentions to the following: 
+
+i) These scripts call on various txt files that need to be in place in a cloud storage facility, such as Dropbox. As such, to avoid errors, create blank files with the correct names, or simply ignore the initial errors (complaining the files do not exist), as they will be created by the script eventually. 
+ii) The names of these txt files, the path to the cloud folder, and the names of the hosts are defined based on my environment, you may need to change these to match ur environment
