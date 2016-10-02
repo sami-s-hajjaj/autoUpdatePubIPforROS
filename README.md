@@ -15,7 +15,7 @@ This package assumes the following:
 4) The ROS_networkSelector_member: an upgradae of teh memberScript,  it auto-detect the changes in the IP of the robot, as well as the type of network (remote or local ROS networks), and applies the ROS and Linux changes accordingly, on the member
 
 
-- INSTALLATION: just copy the required scripts into the bash file of each computer of the ROS network, (1 & 2 or 3 & 4, depending on the needed functionality), paying attentions to the following: 
+INSTALLATION: just copy the required scripts into the bash file of each computer of the ROS network, (1 & 2 or 3 & 4, depending on the needed functionality), paying attentions to the following: 
 
-i) These scripts call on various txt files that need to be in place in a cloud storage facility, such as Dropbox. As such, to avoid errors, create blank files with the correct names, or simply ignore the initial errors (complaining the files do not exist), as they will be created by the script eventually. 
-ii) The names of these txt files, the path to the cloud folder, and the names of the hosts are defined based on my environment, you may need to change these to match ur environment
+- These scripts call on various txt files that need to be in place in a cloud storage facility, such as Dropbox. As such, to avoid errors, create blank files with the correct names, or simply ignore the initial errors (complaining the files do not exist), as they will be created by the script eventually. 
+- The names of these txt files, the path to the cloud folder, and the names of the hosts are defined based on my environment, you may need to change these to match ur environment
