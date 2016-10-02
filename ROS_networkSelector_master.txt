@@ -67,4 +67,4 @@ else
 fi 
 
 export ROS_MASTER_URI=http://$turtlebot_LocIP:11311	# always the same regardless of the type of network
-
+ 
