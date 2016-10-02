@@ -8,10 +8,10 @@ This package assumes the following:
 
 COMPONENTS: There are Four scripts in this pacakge: 
 
-1) The masterScript: to be installed at the robot's netbook, and 
-2) The memberScript: to be installed at laptop or desktop, or any other member of the remote ROS network. 
-3) The ROS_networkSelector_master: an upgrade of the masterScript, it auto-detect the changes in the IP of the robot, as well as the type of network (remote or local ROS networks), and applies the ROS and Linux changes accordingly, on the ROSmaster 
-4) The ROS_networkSelector_member: an upgradae of teh memberScript,  it auto-detect the changes in the IP of the robot, as well as the type of network (remote or local ROS networks), and applies the ROS and Linux changes accordingly, on the member
+1- The masterScript: to be installed at the robot's netbook, and 
+2- The memberScript: to be installed at laptop or desktop, or any other member of the remote ROS network. 
+3- The ROS_networkSelector_master: an upgrade of the masterScript, it auto-detect the changes in the IP of the robot, as well as the type of network (remote or local ROS networks), and applies the ROS and Linux changes accordingly, on the ROSmaster 
+4- The ROS_networkSelector_member: an upgradae of teh memberScript,  it auto-detect the changes in the IP of the robot, as well as the type of network (remote or local ROS networks), and applies the ROS and Linux changes accordingly, on the member
 
 
 INSTALLATION: just copy the required scripts into the bash file of each computer of the ROS network, (1 & 2 or 3 & 4, depending on the needed functionality), paying attentions to the following: 
