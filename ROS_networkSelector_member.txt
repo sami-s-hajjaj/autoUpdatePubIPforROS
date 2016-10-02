@@ -12,38 +12,38 @@ if [[ -n $(wget -qO- http://ipecho.net/plain) ]] ; then # check if online
    sami_PubIP=$(showPubIP) 	# 1st arguement, sami Public IP address, passed from bash
    sami_LocIP=$(showIP)	 	# 2nd argument, sami local IP address, passed from bash
 
-   sami_PubIP_old=$(cat /home/samihajjaj/Dropbox/myIPs/sami_PubIP.txt);
-   sami_LocIP_old=$(cat /home/samihajjaj/Dropbox/myIPs/sami_LocIP.txt);   
+   sami_PubIP_old=$(cat /home/USERNAME/Dropbox/myIPs/sami_PubIP.txt);
+   sami_LocIP_old=$(cat /home/USERNAME/Dropbox/myIPs/sami_LocIP.txt);   
 
    # updating Sami configuration settings  
    if [[ $sami_PubIP_old != $sami_PubIP ]] ; then 					  # When sami's network is changed, or a new IP address
 	echo "New Network or New IP address: Applying Changes .."
-   	rm /home/samihajjaj/Dropbox/myIPs/sami_PubIP.txt;  				  # delete old values - Pub IP
-	rm /home/samihajjaj/Dropbox/myIPs/sami_LocIP.txt;				  # delete old values - Loc IP
+   	rm /home/USERNAME/Dropbox/myIPs/sami_PubIP.txt;  				  # delete old values - Pub IP
+	rm /home/USERNAME/Dropbox/myIPs/sami_LocIP.txt;				  # delete old values - Loc IP
 	remHost.sh sami;								  # delete old hosts  - sami host 
 
-   	echo $sami_PubIP >> /home/samihajjaj/Dropbox/myIPs/sami_PubIP.txt;		  # add new values - Pub IP
-	echo $sami_LocIP >> /home/samihajjaj/Dropbox/myIPs/sami_LocIP.txt;		  # add new values - Loc IP
+   	echo $sami_PubIP >> /home/USERNAME/Dropbox/myIPs/sami_PubIP.txt;		  # add new values - Pub IP
+	echo $sami_LocIP >> /home/USERNAME/Dropbox/myIPs/sami_LocIP.txt;		  # add new values - Loc IP
 	addHost.sh sami $sami_LocIP							  # add new hosts - sami host
    fi
 
 # -------------- Updating Turtlebot Ip Addresses --------------------------------------- 
 
-   turtlebot_PubIP=$(cat /home/samihajjaj/Dropbox/myIPs/turtlebot_PubIP.txt)
-   turtlebot_LocIP=$(cat /home/samihajjaj/Dropbox/myIPs/turtlebot_LocIP.txt)
+   turtlebot_PubIP=$(cat /home/USERNAME/Dropbox/myIPs/turtlebot_PubIP.txt)
+   turtlebot_LocIP=$(cat /home/USERNAME/Dropbox/myIPs/turtlebot_LocIP.txt)
 
-   turtlebot_PubIP_old=$(cat /home/samihajjaj/Dropbox/myIPs/turtlebot_PubIP_old.txt)
-   turtlebot_LocIP_old=$(cat /home/samihajjaj/Dropbox/myIPs/turtlebot_LocIP_old.txt)
+   turtlebot_PubIP_old=$(cat /home/USERNAME/Dropbox/myIPs/turtlebot_PubIP_old.txt)
+   turtlebot_LocIP_old=$(cat /home/USERNAME/Dropbox/myIPs/turtlebot_LocIP_old.txt)
 
    # updating Turtlebot configuration settings 
    if [[ $turtlebot_PubIP_old != $turtlebot_PubIP ]] ; then 				  # When turtlebot's network is changed, or a new IP address
    	echo "Continuing Configuration .. ";	
-    	rm /home/samihajjaj/Dropbox/myIPs/turtlebot_PubIP_old.txt;			  # delete old values - Pub IP	
-    	rm /home/samihajjaj/Dropbox/myIPs/turtlebot_LocIP_old.txt;			  # delete old values - Loc IP
+    	rm /home/USERNAME/Dropbox/myIPs/turtlebot_PubIP_old.txt;			  # delete old values - Pub IP	
+    	rm /home/USERNAME/Dropbox/myIPs/turtlebot_LocIP_old.txt;			  # delete old values - Loc IP
 	remHost.sh turtlebot;								  # delete old hosts  - turtlebot host 
 
-    	echo $turtlebot_PubIP >> /home/samihajjaj/Dropbox/myIPs/turtlebot_PubIP_old.txt;  # add new values - Pub IP
-    	echo $turtlebot_LocIP >> /home/samihajjaj/Dropbox/myIPs/turtlebot_LocIP_old.txt;  # add new values - Loc IP
+    	echo $turtlebot_PubIP >> /home/USERNAME/Dropbox/myIPs/turtlebot_PubIP_old.txt;  # add new values - Pub IP
+    	echo $turtlebot_LocIP >> /home/USERNAME/Dropbox/myIPs/turtlebot_LocIP_old.txt;  # add new values - Loc IP
 	# must know type of network before adding new turtlebot host, this is done below
     fi
 fi
