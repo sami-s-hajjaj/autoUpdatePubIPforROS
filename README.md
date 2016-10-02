@@ -9,6 +9,14 @@ This package assumes the following:
 - Because the robot's IP address is dynamically changing, the definitino of the ROS_MASTER_URI, as well as the hosts settings must be updated everytime the portable modem is restarted 
 - Also, becuase you switch back and forthh between local and remote networks, you also require a quick way to apply settings and configuration changes
 
+COMPONENTS: there are 4 main scripts here, and 2 secondary shell scripts 
+
+- masterScript: a script that heeps treack of Turtlebot's public IP address, to be installed on Turtlebot's netbook
+- memberScript: a script that heeps treack of Turtlebot's public IP address, to be installed on the computer networking with Turtlebot
+- ROS_networkSelector_master: an upgrade of the masterScript, it auto-detect the changes in the IP of the robot, as well as the type of network (remote or local ROS networks), and applies the ROS and Linux changes accordingly, on the ROSmaster
+- ROS_networkSelector_member: an upgradae of teh memberScript, it auto-detect the changes in the IP of the robot, as well as the type of network (remote or local ROS networks), and applies the ROS and Linux changes accordingly, on the member
+- remHost.sh: a shell script to remove a host with the old IP address to /etc/hosts
+- addHost.sh: a shell script to add a new host with the latest IP address to /etc/hosts
 
 INSTALLATION: just copy the required scripts into the bash file of each computer of the ROS network, (1 & 2 or 3 & 4, depending on the needed functionality), paying attentions to the following: 
 
