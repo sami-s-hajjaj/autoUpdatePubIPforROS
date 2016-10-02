@@ -1,0 +1,70 @@
+
+###########################################################################
+# Update IP addresses in Cloud Storage facility 
+# this step is needed for ROS network configuration 
+###########################################################################
+
+if [[ -n $(wget -qO- http://ipecho.net/plain) ]] ; then # check if online
+
+   #echo "we are now online"
+
+# ------------ Update turtlebot IP Addresses ----------------------------------------
+
+
+   turtlebot_PubIP=$(showPubIP)   # 1st arguement, Turtlebot Public IP address, passed from bash
+   turtlebot_LocIP=$(showIP) 	  # 2nd argument, Turtlebot local IP address, passed from bash
+
+   turtlebot_PubIP_old=$(cat /home/turtlebot/Dropbox/myIPs/turtlebot_PubIP.txt);
+   turtlebot_LocIP_old=$(cat /home/turtlebot/Dropbox/myIPs/turtlebot_LocIP.txt);   
+
+   # Updating Turtlebot configuration settings	
+   if [[ $turtlebot_PubIP_old != $turtlebot_PubIP ]] ; then    				# When Turtlebot's network is changed, or a new IP address
+	echo "New Network or New Public IP address: Applying changes ..."
+   	rm /home/turtlebot/Dropbox/myIPs/turtlebot_PubIP.txt; 				# delete old values - Pub IP
+	rm /home/turtlebot/Dropbox/myIPs/turtlebot_LocIP.txt;				# delete old values - Loc IP
+	remHost.sh turtlebot 								# delete old hosts  - turtlebot host
+
+  	echo $turtlebot_PubIP >> /home/turtlebot/Dropbox/myIPs/turtlebot_PubIP.txt;     # add new values - Pub IP
+	echo $turtlebot_LocIP >> /home/turtlebot/Dropbox/myIPs/turtlebot_LocIP.txt;	# add new values - Loc IP
+	addHost.sh turtlebot $turtlebot_LocIP						# add new hosts  - turtlebot host
+   fi
+
+# ------------ Update sami IP Addresses ----------------------------------------
+
+   sami_PubIP=$(cat /home/turtlebot/Dropbox/myIPs/sami_PubIP.txt)
+   sami_LocIP=$(cat /home/turtlebot/Dropbox/myIPs/sami_LocIP.txt)
+
+   sami_PubIP_old=$(cat /home/turtlebot/Dropbox/myIPs/sami_PubIP_old.txt);
+   sami_LocIP_old=$(cat /home/turtlebot/Dropbox/myIPs/sami_LocIP_old.txt);   
+
+   # Updating Sami configuration settings	
+   if [[ $sami_PubIP_old != $sami_PubIP ]] ; then 					# When sami's network is changed, or a new IP address
+	echo "Continuing Configuration .. ";
+   	rm /home/turtlebot/Dropbox/myIPs/sami_PubIP_old.txt;  				# delete old values - Pub IP
+	rm /home/turtlebot/Dropbox/myIPs/sami_LocIP_old.txt;				# delete old values - Pub IP
+	remHost.sh sami;								# delete old hosts  - sami host
+
+   	echo $sami_PubIP >> /home/turtlebot/Dropbox/myIPs/sami_PubIP_old.txt; 		# add new values - Pub IP
+	echo $sami_LocIP >> /home/turtlebot/Dropbox/myIPs/sami_LocIP_old.txt;		# add new values - Loc IP
+	# must know type of network before adding new sami host, this is done below
+   fi
+
+fi	
+
+###########################################################################
+# ROS Netowk Configuration
+###########################################################################
+
+if [ $sami_PubIP = $sami_PubIP_old ] && [ $turtlebot_PubIP = $turtlebot_PubIP_old ] ; then   # if all IP addresses have been updated
+
+    if [[ $turtlebot_PubIP == *"113.210"* ]] ; then 					# if a remote ROS Network 
+	addHost.sh sami $sami_PubIP; 							# add new host - sami host (Public) 
+    elif [[ $turtlebot_PubIP == *"103.227"* ]] ; then   				# if a local ROS Network 
+	addHost.sh sami $sami_LocIP 							# add new host - sami host (Local) 
+    fi	
+else 
+    echo "Configuration Still Progress ... "						# IP addresses are still being updated
+fi 
+
+export ROS_MASTER_URI=http://$turtlebot_LocIP:11311	# always the same regardless of the type of network
+
