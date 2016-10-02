@@ -6,8 +6,7 @@ This package assumes the following:
 - You have a Cloud-based storage facility, such as Dropbox. The scripts in this package use Dropbox.
 - Because the robot's IP address is dynamically changing, the definitino of the ROS_MASTER_URI, as well as the hosts settings must be updated everytime the portable modem is restarted 
 
-- The scripts of this pacakge automate this step
-- There are Four scripts in this pacakge: 
+COMPONENTS: There are Four scripts in this pacakge: 
 
 1) The masterScript: to be installed at the robot's netbook, and 
 2) The memberScript: to be installed at laptop or desktop, or any other member of the remote ROS network. 
