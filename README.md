@@ -14,4 +14,4 @@ INSTALLATION: just copy the required scripts into the bash file of each computer
 
 - These scripts call on various txt files that need to be in place in a cloud storage facility, such as Dropbox. As such, to avoid errors, create blank files with the correct names, or simply ignore the initial errors (complaining the files do not exist), as they will be created by the script eventually. 
 - The names of these txt files, the path to the cloud folder, and the names of the hosts are defined based on my environment, you may need to change these to match ur environment
-- the addHost.sh and remHost.sh need to be installed and set as executables, also the path to them must be added to $PATH. Google "creating a new shell script for more information" 
+- the secondary shell script files (addHost.sh and remHost.sh) need to be installed and set as executables, also the path to them must be added to $PATH. Google "creating a new shell script for more information" 
