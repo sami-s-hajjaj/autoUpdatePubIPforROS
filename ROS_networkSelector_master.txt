@@ -48,7 +48,7 @@ if [[ -n $(wget -qO- http://ipecho.net/plain) ]] ; then # check if online
 	echo $sami_LocIP >> /home/turtlebot/Dropbox/myIPs/sami_LocIP_old.txt;		# add new values - Loc IP
 	# must know type of network before adding new sami host, this is done below
    fi
-
+ 
 fi	
 
 ###########################################################################
